@@ -1,0 +1,16 @@
+---
+
+###################################################################################
+# Check if the specified Variable Values are valid and defined
+###################################################################################
+
+- name: Check if Container Name is defined
+  fail:
+    msg: "You haven't defined a valid Container Name!"
+  when: (container_name == '')
+
+- name: Check if OS Template is defined
+  fail:
+    msg: "You haven't defined a valid Container Template!"
+  when: (container_os_template == '')
+

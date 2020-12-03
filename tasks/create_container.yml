@@ -1,0 +1,32 @@
+---
+
+- name: Create new container {{ container_name }}
+  community.general.proxmox:
+    vmid: "{{ container_id }}"
+    node: "{{ container_node }}"
+    api_user: "{{ proxmox_api_user }}"
+    api_password: "{{ proxmox_api_password }}"
+    api_host: "{{ proxmox_api_host }}"
+    password: "{{ container_password }}"
+    hostname: "{{ container_name }}"
+    storage: "{{ container_storage }}"
+    ostemplate: "{{ container_os_template }}"
+    onboot: "{{ container_start_on_boot }}"
+    description: "{{ container_description }}"
+    timeout: "{{ action_timeout }}"
+    cores: "{{ container_cores }}"
+    memory: "{{ container_memory }}"
+    swap: "{{ container_swap }}"
+  tags:
+    - create
+
+- name: Start new Container
+  community.general.proxmox:
+    vmid: "{{ container_id }}"
+    api_user: "{{ proxmox_api_user }}"
+    api_password: "{{ proxmox_api_password }}"
+    api_host: "{{ proxmox_api_host }}"
+    state: started
+  when: (start_after_creation|bool)
+  tags:
+    - create

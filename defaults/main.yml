@@ -1,0 +1,36 @@
+---
+
+# proxmox_api_user: Proxmox API Username
+# proxmox_api_password: Password of the API User
+# proxmox_api_host: Hostname of the Proxmox Server
+# container_id: Container ID within Proxmox. If not set, it will be calculated by Proxmox
+# container_password: Passwort of the root User of the Container
+# container_name: Name of the Container you want to create
+# container_storage: Proxmox Datacenter Storage where the Container will be created in
+# container_description: An optional Description of the Container
+# container_os_template: Location and Template Name. E.G. "share:vztmpl/ubuntu-18.04-standard_18.04.1-1_amd64.tar.gz"
+# container_start_on_boot: Controls if the container is started when the Proxmox Server is booted
+# container_cores: Count of Cores the Container will have assigned
+# container_memory: Amount of Memory in MB the Container will have assigned
+# container_swap: Amount of Swap Space the Container will have assigned
+# action_timeout: Timeout of the Creation or Deletion Action
+# start_after_creation: Controls if the Container will be started after the Creation 
+
+proxmox_api_user: "root@pam"
+proxmox_api_password: "Start123"
+proxmox_api_host: "pvehost1"
+
+container_id:
+container_password: "Start123"
+container_node: "pvehost1"
+container_name: ""
+container_storage: "local"
+container_description: ""
+container_os_template: ""
+container_start_on_boot: false
+container_cores: 1
+container_memory: 512
+container_swap: 512
+
+action_timeout: 120
+start_after_creation: true

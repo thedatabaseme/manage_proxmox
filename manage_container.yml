@@ -1,0 +1,9 @@
+---
+
+- hosts: "localhost"
+  vars:
+    proxmox_api_host: "pvehost1"
+    proxmox_api_user: "root@pam"
+    proxmox_api_password: "Start123"
+  roles:
+    - role: manage_proxmox_container

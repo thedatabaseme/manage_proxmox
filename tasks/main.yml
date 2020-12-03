@@ -1,0 +1,27 @@
+---
+
+##################################################################################
+#    ////////////////////////// Tasks Includes //////////////////////////
+##################################################################################
+
+- name: Precheck for Proxmox Container management
+  include_tasks: precheck.yml
+  tags:
+    - always
+
+- name: Create Proxmox Container {{ container_name }}
+  include_tasks: create_container.yml
+  tags:
+    - create
+
+- name: Delete Proxmox Container {{ container_name }}
+  include_tasks: delete_container.yml
+  tags:
+    - delete
+
+##################################################################################
+#  ////////////////////////// Finished Proxmox Action //////////////////////////
+##################################################################################
+
+- debug:
+    msg: "Proxmox Container management finished!"
