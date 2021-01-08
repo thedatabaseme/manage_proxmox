@@ -14,3 +14,8 @@
     msg: "You haven't defined a valid Container Template!"
   when: (container_os_template == '')
 
+- name: Set ssh_public_key
+  set_fact:
+    ssh_public_key: "{{ lookup('file', 'templates/id_rsa.pub') }}"
+  tags:
+    - ssh_public_key_from_file

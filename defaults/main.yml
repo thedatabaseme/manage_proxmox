@@ -13,6 +13,8 @@
 # container_cores: Count of Cores the Container will have assigned
 # container_memory: Amount of Memory in MB the Container will have assigned
 # container_swap: Amount of Swap Space the Container will have assigned
+# container_network_interface: Dictionary of network interfaces that will be added to the new Container. 
+#  Example: container_network_interface: '{"net0":"name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"}' or when setting it on the playbook run, see README.md
 # action_timeout: Timeout of the Creation or Deletion Action
 # start_after_creation: Controls if the Container will be started after the Creation 
 
@@ -31,6 +33,9 @@ container_start_on_boot: false
 container_cores: 1
 container_memory: 512
 container_swap: 512
+ssh_public_key: ""
+
+container_network_interface: '{"net0":"name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"}'
 
 action_timeout: 120
 start_after_creation: true

@@ -35,6 +35,8 @@ A description of the settable variables for this role should go here, including 
 - action_timeout (Default 120): Timeout of the Creation or Deletion Action
 - start_after_creation (Default true): Controls if the Container will be started after the Creation 
 
+This Role also provides the possibility to add an SSH public key to the authorized keys on the Container. Therefore you need to place your public key(s) inside an id_rsa.pub file under templates and run the Playbook with the ssh_public_key_from_file TAG. (See Example below)
+
 Dependencies
 ------------
 
@@ -58,7 +60,7 @@ Including an example of how to use your role (for instance, with variables passe
 
 An example Playbook Call looks like this. Ofcourse you may want to specify the Variables within your Playbook or within your Inventory:
 
-    - ansible-playbook manage_container.yml --tags "create" -e "container_password=Start123 container_node=srvoffice2 container_name=ctTest container_os_template=Share:vztmpl/ubuntu-18.04-standard_18.04.1-1_amd64.tar.gz container_start_on_boot=true start_after_creation=true container_storage=vm-single container_cores=2 container_memory=1024" -k -K -u <username>
+    - ansible-playbook manage_container.yml --tags "create" -e "container_password=Start123 container_node=srvoffice2 container_name=ctTest container_os_template=Share:vztmpl/ubuntu-18.04-standard_18.04.1-1_amd64.tar.gz container_start_on_boot=true start_after_creation=true container_storage=vm-single container_cores=2 container_memory=1024" --tags "ssh_public_key_from_file" -k -K -u <username>
     
 or this if you want to delete a Container:
 

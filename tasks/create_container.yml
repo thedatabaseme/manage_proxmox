@@ -17,6 +17,9 @@
     cores: "{{ container_cores }}"
     memory: "{{ container_memory }}"
     swap: "{{ container_swap }}"
+    pubkey: "{{ ssh_public_key }}"
+    netif: "{{ container_network_interface }}"
+    proxmox_default_behavior: compatibility
   tags:
     - create
 
@@ -27,6 +30,7 @@
     api_password: "{{ proxmox_api_password }}"
     api_host: "{{ proxmox_api_host }}"
     state: started
+    proxmox_default_behavior: compatibility
   when: (start_after_creation|bool)
   tags:
     - create
