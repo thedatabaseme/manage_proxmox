@@ -5,7 +5,7 @@
 ##################################################################################
 
 - name: Download required collections
-  local_action: command ansible-galaxy install -r {{ role_path }}/requirements.yml
+  local_action: command ansible-galaxy collection install -r {{ role_path }}/requirements.yml
   become: false
   tags:
     - always
