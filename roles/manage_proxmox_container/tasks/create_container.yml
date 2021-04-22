@@ -20,8 +20,12 @@
     pubkey: "{{ ssh_public_key }}"
     netif: "{{ container_network_interface }}"
     proxmox_default_behavior: compatibility
+  register: ct_creation
   tags:
     - create
+
+- debug:
+    var: ct_creation
 
 - name: Start new Container
   community.general.proxmox:
