@@ -24,11 +24,6 @@
   tags:
     - create
 
-- debug:
-    var: ct_creation
-  tags:
-    - create
-
 - name: Start new Container
   community.general.proxmox:
     vmid: "{{ container_id }}"
@@ -37,6 +32,6 @@
     api_host: "{{ proxmox_api_host }}"
     state: started
     proxmox_default_behavior: compatibility
-  when: (start_after_creation|bool)
+  when: (start_after_creation|bool) and (container_id is defined)
   tags:
     - create
