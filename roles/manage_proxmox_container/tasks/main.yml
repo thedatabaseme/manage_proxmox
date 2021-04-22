@@ -4,9 +4,11 @@
 #    ////////////////////////// Requirements //////////////////////////
 ##################################################################################
 
-- name: Download required roles
+- name: Download required collections
   local_action: command ansible-galaxy install -r {{ role_path }}/requirements.yml
   become: false
+  tags:
+    - always
 
 ##################################################################################
 #    ////////////////////////// Tasks Includes //////////////////////////
