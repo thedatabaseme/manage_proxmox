@@ -41,5 +41,6 @@
   set_stats:
     data:
       host_name: "{{ container_name }}"
+      HOSTS: "{{ container_name }}"
   tags:
     - create
