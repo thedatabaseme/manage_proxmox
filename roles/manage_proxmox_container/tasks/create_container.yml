@@ -33,8 +33,7 @@
     api_user: "{{ proxmox_api_user }}"
     api_password: "{{ proxmox_api_password }}"
     api_host: "{{ proxmox_api_host }}"
-    state: restarted
-    force: true
+    state: started
     proxmox_default_behavior: compatibility
   when: (start_after_creation|bool)
   tags:
