@@ -26,6 +26,8 @@
 
 - debug:
     var: ct_creation
+  tags:
+    - create
 
 - name: Start new Container
   community.general.proxmox:
