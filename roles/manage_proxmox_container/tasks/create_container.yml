@@ -36,3 +36,8 @@
   when: (start_after_creation|bool) and (container_id is defined)
   tags:
     - create
+
+- name: Set some Stats for later use
+  set_stats:
+    data:
+      host_name: "{{ container_name }}"
