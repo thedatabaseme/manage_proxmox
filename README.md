@@ -41,6 +41,7 @@ Dependencies
 ------------
 
 Be aware, that this role will run at the localhost (Ansible Controlhost) by default. When you want to run it on another Node, both proxmoxer and requests Modules are needed to be installed there.
+This will be made by a pip installation call in the precheck.yml. You may need to set an appropriate Python Interpreter with ansible_python_interpreter in your Inventory.
 Also be aware, this role works with TAGS. So you need to specify on the Playbook Call, if you want to create or delete a Container. See example below.
 
 Example Playbook

@@ -2,6 +2,7 @@ Changelog of manage_proxmox_container:
 
 Version 1.1.0
   - Changed Role Structure / Folder Structure
+  - Needed Collections will now be installed by ansible-galaxy and requirements.yml
 
 Version 1.0.1
   - Added possibility to add an SSH Public Key for root when creating a new Container
