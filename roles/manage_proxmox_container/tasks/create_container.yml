@@ -17,6 +17,7 @@
     cores: "{{ container_cores }}"
     memory: "{{ container_memory }}"
     swap: "{{ container_swap }}"
+    disk: "{{ container_disk_size }}"
     pubkey: "{{ ssh_public_key }}"
     netif: "{{ container_network_interface }}"
     proxmox_default_behavior: compatibility
