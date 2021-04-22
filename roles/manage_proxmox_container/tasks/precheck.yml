@@ -26,10 +26,7 @@
 
 - name: Install needed Python Libraries
   pip:
-    name: "{{ item }}"
+    name: ['proxmoxer', 'requests']
     state: latest
-  with_items:
-    - proxmoxer
-    - requests
   tags:
     - always
