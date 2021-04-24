@@ -34,8 +34,8 @@
 
 - debug:
     var:
-      - container_full_clone
-      - blubber
+      container_full_clone
+      blubber
   tags:
     - createvm
 
@@ -51,7 +51,8 @@
       node: "{{ container_node }}"
       vmid: "{{ container_clone_id }}"
       format: raw
-      full: "{{ container_full_clone | int }}"
+#      full: "{{ container_full_clone | int }}"
+      full: 0
       storage: "{{ container_storage }}"
       name: "{{ container_name }}"
   register: proxmox_vm_clone
