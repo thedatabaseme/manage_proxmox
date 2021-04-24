@@ -28,12 +28,14 @@
     - createvm
 
 - set_fact:
-    container_full_clone: "{% if container_full_clone==true %}0{% elif container_full_clone==false%}1{% endif %}"
+    blubber: "{% if container_full_clone==true %}0{% elif container_full_clone==false%}1{% endif %}"
   tags:
     - createvm
 
 - debug:
-    msg: "{{ container_full_clone | int }}"
+    var:
+      - container_full_clone
+      - blubber
   tags:
     - createvm
 
