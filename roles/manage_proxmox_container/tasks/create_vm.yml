@@ -27,6 +27,11 @@
   tags:
     - createvm
 
+- debug:
+    msg: "{{ container_full_clone | int }}"
+  tags:
+    - createvm
+
 - name: Create / Clone new VM
   uri:
     method: POST
@@ -38,9 +43,9 @@
       newid: "{{ container_id }}"
       node: "{{ container_node }}"
       vmid: "{{ container_clone_id }}"
-#      format: raw
+      format: raw
       full: "{{ container_full_clone | int }}"
-#      storage: "{{ container_storage }}"
+      storage: "{{ container_storage }}"
       name: "{{ container_name }}"
   register: proxmox_vm_clone
   delegate_to: localhost

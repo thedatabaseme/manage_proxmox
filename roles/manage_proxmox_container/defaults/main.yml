@@ -40,7 +40,7 @@ container_cores: 1
 container_memory: 512
 container_swap: 512
 container_disk_size: 8
-container_full_clone: false
+container_full_clone: true
 ssh_public_key: ""
 
 container_network_interface: '{"net0":"name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"}'
