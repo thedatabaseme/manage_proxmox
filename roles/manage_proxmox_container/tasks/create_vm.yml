@@ -48,7 +48,7 @@
 
 - name: Sleep while VM is cloned
   pause:
-    seconds: 120
+    seconds: 180
   tags:
     - createvm
 
