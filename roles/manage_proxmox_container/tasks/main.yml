@@ -38,5 +38,6 @@
 #  ////////////////////////// Finished Proxmox Action //////////////////////////
 ##################################################################################
 
-- debug:
+- name: Proxmox Container management finished
+  debug:
     msg: "Proxmox Container management finished!"
