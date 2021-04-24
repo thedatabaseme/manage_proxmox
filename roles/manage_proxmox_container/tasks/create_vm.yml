@@ -39,7 +39,7 @@
       node: "{{ container_node }}"
       vmid: "{{ container_clone_id }}"
       format: raw
-      full: "{{ container_full_clone }}"
+      full: "{{ container_full_clone | int }}"
       storage: "{{ container_storage }}"
       name: "{{ container_name }}"
   register: proxmox_vm_clone
