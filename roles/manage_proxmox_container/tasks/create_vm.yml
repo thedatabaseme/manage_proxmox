@@ -28,7 +28,7 @@
     - createvm
 
 - set_fact:
-    container_full_clone: "{% if container_full_clone==true %}1{% elif container_full_clone==false%}0{% endif %}"
+    container_full_clone: "{% if container_full_clone==true %}0{% elif container_full_clone==false%}1{% endif %}"
   tags:
     - createvm
 
