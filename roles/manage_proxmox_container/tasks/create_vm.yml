@@ -52,6 +52,22 @@
   tags:
     - createvm
 
+- name: Setup CPU and Memory Configuration
+  uri:
+    method: POST
+    validate_certs: no
+    url: "https://{{ proxmox_api_host }}:{{ proxmox_api_port }}/api2/json/nodes/{{ container_node }}/qemu/{{ container_id }}/config"
+    headers: "{{ proxmox_api_cookie }}"
+    body_format: json
+    body:
+      node: "{{ container_node }}"
+      vmid: "{{ container_id }}"
+      cores: "{{ container_cores }}"
+      memory: "{{ container_memory }}"
+  delegate_to: localhost
+  tags:
+    - createvm
+
 - name: Start cloned VM
   uri:
     method: POST
@@ -63,5 +79,6 @@
       node: "{{ container_node }}"
       vmid: "{{ container_id }}"
   delegate_to: localhost
+  when: (start_after_creation)
   tags:
     - createvm
