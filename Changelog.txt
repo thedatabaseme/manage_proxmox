@@ -1,5 +1,8 @@
 Changelog of manage_proxmox_container:
 
+Version 1.2.0
+  - Added VM Cloning to the Role Features
+
 Version 1.1.0
   - Changed Role Structure / Folder Structure
   - Needed Collections will now be installed by ansible-galaxy and requirements.yml

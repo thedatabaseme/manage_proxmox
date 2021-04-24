@@ -1,0 +1,84 @@
+---
+
+- name: Logon to Proxmox Server
+  uri:
+    method: POST
+    validate_certs: no
+    return_content: yes
+    url: "https://{{ proxmox_api_host }}:{{ proxmox_api_port }}/api2/json/access/ticket"
+    body_format: json
+    body:
+      username: "{{ proxmox_api_user }}"
+      password: "{{ proxmox_api_password }}"
+  register: proxmox_session
+  delegate_to: localhost
+  become: false
+  no_log: true
+  tags:
+    - createvm
+
+- name: parse cookie data
+  set_fact:
+    proxmox_api_cookie:
+      Cookie: "PVEAuthCookie={{ proxmox_session.json.data.ticket }}"
+      CSRFPreventionToken: "{{ proxmox_session.json.data.CSRFPreventionToken }}"
+  delegate_to: localhost
+  no_log: true
+  tags:
+    - createvm
+
+- name: Create / Clone new VM
+  uri:
+    method: POST
+    validate_certs: no
+    url: "https://{{ proxmox_api_host }}:{{ proxmox_api_port }}/api2/json/nodes/{{ container_node }}/qemu/{{ container_clone_id }}/clone"
+    headers: "{{ proxmox_api_cookie }}"
+    body_format: json
+    body:
+      newid: "{{ container_id }}"
+      node: "{{ container_node }}"
+      vmid: "{{ container_clone_id }}"
+      format: raw
+      storage: "{{ container_storage }}"
+      name: "{{ container_name }}"
+  register: proxmox_vm_clone
+  delegate_to: localhost
+  tags:
+    - createvm
+
+- name: Sleep while VM is cloned
+  pause:
+    seconds: 180
+  tags:
+    - createvm
+
+- name: Setup CPU and Memory Configuration
+  uri:
+    method: POST
+    validate_certs: no
+    url: "https://{{ proxmox_api_host }}:{{ proxmox_api_port }}/api2/json/nodes/{{ container_node }}/qemu/{{ container_id }}/config"
+    headers: "{{ proxmox_api_cookie }}"
+    body_format: json
+    body:
+      node: "{{ container_node }}"
+      vmid: "{{ container_id }}"
+      cores: "{{ container_cores }}"
+      memory: "{{ container_memory }}"
+  delegate_to: localhost
+  tags:
+    - createvm
+
+- name: Start cloned VM
+  uri:
+    method: POST
+    validate_certs: no
+    url: "https://{{ proxmox_api_host }}:{{ proxmox_api_port }}/api2/json/nodes/{{ container_node }}/qemu/{{ container_id }}/status/start"
+    headers: "{{ proxmox_api_cookie }}"
+    body_format: json
+    body:
+      node: "{{ container_node }}"
+      vmid: "{{ container_id }}"
+  delegate_to: localhost
+  when: (start_after_creation)
+  tags:
+    - createvm

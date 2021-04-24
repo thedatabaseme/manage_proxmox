@@ -8,7 +8,8 @@
   local_action: command ansible-galaxy collection install -r {{ role_path }}/requirements.yml
   become: false
   tags:
-    - always
+    - create
+    - delete
 
 ##################################################################################
 #    ////////////////////////// Tasks Includes //////////////////////////
@@ -24,6 +25,11 @@
   tags:
     - create
 
+- name: Create Proxmox VM {{ container_name }}
+  include_tasks: create_vm.yml
+  tags:
+    - createvm
+
 - name: Delete Proxmox Container {{ container_name }}
   include_tasks: delete_container.yml
   tags:
@@ -33,5 +39,6 @@
 #  ////////////////////////// Finished Proxmox Action //////////////////////////
 ##################################################################################
 
-- debug:
+- name: Proxmox Container management finished
+  debug:
     msg: "Proxmox Container management finished!"

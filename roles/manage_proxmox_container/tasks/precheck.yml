@@ -9,14 +9,16 @@
     msg: "You haven't defined a valid Container Name!"
   when: (container_name == '')
   tags:
-    - always
+    - create
+    - delete
 
 - name: Check if OS Template is defined
   fail:
     msg: "You haven't defined a valid Container Template!"
   when: (container_os_template == '')
   tags:
-    - always
+    - create
+    - delete
 
 - name: Set ssh_public_key
   set_fact:
@@ -29,4 +31,5 @@
     name: ['proxmoxer', 'requests']
     state: latest
   tags:
-    - always
+    - create
+    - delete
