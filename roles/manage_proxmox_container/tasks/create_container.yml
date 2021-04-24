@@ -42,5 +42,6 @@
     data:
       host_name: "{{ container_name }}"
       HOSTS: "{{ container_name }}"
+      ansible_limit: "Buildup"
   tags:
     - create
