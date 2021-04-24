@@ -14,6 +14,8 @@
   delegate_to: localhost
   become: false
   no_log: true
+  tags:
+    - createvm
 
 - name: parse cookie data
   set_fact:
@@ -22,6 +24,8 @@
       CSRFPreventionToken: "{{ proxmox_session.json.data.CSRFPreventionToken }}"
   delegate_to: localhost
   no_log: true
+  tags:
+    - createvm
 
 - name: Create / Clone new VM
   uri:
@@ -38,5 +42,7 @@
       full: "{{ container_full_clone }}"
       storage: "{{ container_storage }}"
       name: "{{ container_name }}"
-  register: proxmox_cluster_information
+  register: proxmox_vm_clone
   delegate_to: localhost
+  tags:
+    - createvm
