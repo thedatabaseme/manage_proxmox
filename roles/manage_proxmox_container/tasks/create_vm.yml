@@ -1,0 +1,42 @@
+---
+
+- name: Logon to Proxmox Server
+  uri:
+    method: POST
+    validate_certs: no
+    return_content: yes
+    url: "https://{{ proxmox_api_host }}:{{ proxmox_api_port }}/api2/json/access/ticket"
+    body_format: json
+    body:
+      username: "{{ proxmox_api_user }}"
+      password: "{{ proxmox_api_password }}"
+  register: proxmox_session
+  delegate_to: localhost
+  become: false
+  no_log: true
+
+- name: parse cookie data
+  set_fact:
+    proxmox_api_cookie:
+      Cookie: "PVEAuthCookie={{ proxmox_session.json.data.ticket }}"
+      CSRFPreventionToken: "{{ proxmox_session.json.data.CSRFPreventionToken }}"
+  delegate_to: localhost
+  no_log: true
+
+- name: Create / Clone new VM
+  uri:
+    method: POST
+    validate_certs: no
+    url: "https://{{ proxmox_api_host }}:{{ proxmox_api_port }}/api2/json/{{ container_node }}/qemu/{{ container_clone_id }}/clone"
+    headers: "{{ proxmox_api_cookie }}"
+    body_format: json
+    body:
+      newid: "{{ container_id }}"
+      node: "{{ container_node }}"
+      vmid: "{{ container_clone_id }}"
+      format: raw
+      full: "{{ container_full_clone }}"
+      storage: "{{ container_storage }}"
+      name: "{{ container_name }}"
+  register: proxmox_cluster_information
+  delegate_to: localhost

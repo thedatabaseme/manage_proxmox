@@ -24,6 +24,11 @@
   tags:
     - create
 
+- name: Create Proxmox VM {{ container_name }}
+  include_tasks: create_vm.yml
+  tags:
+    - createvm
+
 - name: Delete Proxmox Container {{ container_name }}
   include_tasks: delete_container.yml
   tags:

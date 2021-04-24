@@ -3,7 +3,9 @@
 # proxmox_api_user: Proxmox API Username
 # proxmox_api_password: Password of the API User
 # proxmox_api_host: Hostname of the Proxmox Server
-# container_id: Container ID within Proxmox. If not set, it will be calculated by Proxmox
+# proxmox_api_port: Port of the Proxmox Server
+# container_id: Container ID within Proxmox. If not set, it will be calculated by Proxmox. Value is needed when a VM (not a container) shall be cloned
+# container_clone_id: ID of the Container / VM / Template to clone a VM from. Only needed when TAG is createvm
 # container_password: Passwort of the root User of the Container
 # container_name: Name of the Container you want to create
 # container_storage: Proxmox Datacenter Storage where the Container will be created in
@@ -14,6 +16,7 @@
 # container_memory: Amount of Memory in MB the Container will have assigned
 # container_swap: Amount of Swap Space in MB the Container will have assigned
 # container_disk_size: Size in GB of the root Disk
+# container_full_clone: Controls if a full or a linked clone should be made. Only needed when TAG is createvm
 # container_network_interface: Dictionary of network interfaces that will be added to the new Container. 
 #  Example: container_network_interface: '{"net0":"name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"}' or when setting it on the playbook run, see README.md
 # action_timeout: Timeout of the Creation or Deletion Action
@@ -22,8 +25,10 @@
 proxmox_api_user: "root@pam"
 proxmox_api_password: "Start123"
 proxmox_api_host: "pvehost1"
+proxmox_api_port: 8006
 
 container_id:
+container_clone_id: 997
 container_password: "Start123"
 container_node: "pvehost1"
 container_name: ""
@@ -35,6 +40,7 @@ container_cores: 1
 container_memory: 512
 container_swap: 512
 container_disk_size: 8
+container_full_clone: false
 ssh_public_key: ""
 
 container_network_interface: '{"net0":"name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"}'
