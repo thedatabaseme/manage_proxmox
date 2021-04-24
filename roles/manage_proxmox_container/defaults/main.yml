@@ -16,7 +16,6 @@
 # container_memory: Amount of Memory in MB the Container will have assigned
 # container_swap: Amount of Swap Space in MB the Container will have assigned
 # container_disk_size: Size in GB of the root Disk
-# container_full_clone: Controls if a full or a linked clone should be made. Only needed when TAG is createvm
 # container_network_interface: Dictionary of network interfaces that will be added to the new Container. 
 #  Example: container_network_interface: '{"net0":"name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"}' or when setting it on the playbook run, see README.md
 # action_timeout: Timeout of the Creation or Deletion Action
@@ -40,7 +39,6 @@ container_cores: 1
 container_memory: 512
 container_swap: 512
 container_disk_size: 8
-container_full_clone: true
 ssh_public_key: ""
 
 container_network_interface: '{"net0":"name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"}'

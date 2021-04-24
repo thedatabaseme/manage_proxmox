@@ -27,11 +27,6 @@
   tags:
     - createvm
 
-- set_fact:
-    blubber: "{% if container_full_clone==true %}0{% elif container_full_clone==false%}1{% endif %}"
-  tags:
-    - createvm
-
 - name: Create / Clone new VM
   uri:
     method: POST
@@ -44,8 +39,6 @@
       node: "{{ container_node }}"
       vmid: "{{ container_clone_id }}"
       format: raw
-#      full: "{{ container_full_clone | int }}"
-      full: 0
       storage: "{{ container_storage }}"
       name: "{{ container_name }}"
   register: proxmox_vm_clone
