@@ -32,13 +32,6 @@
   tags:
     - createvm
 
-- debug:
-    var:
-      container_full_clone
-      blubber
-  tags:
-    - createvm
-
 - name: Create / Clone new VM
   uri:
     method: POST
