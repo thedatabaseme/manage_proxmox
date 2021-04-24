@@ -27,6 +27,11 @@
   tags:
     - createvm
 
+- set_fact:
+    container_full_clone: "{% if container_full_clone==true %}1{% elif container_full_clone==false%}0{% endif %}"
+  tags:
+    - createvm
+
 - debug:
     msg: "{{ container_full_clone | int }}"
   tags:
