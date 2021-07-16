@@ -1,7 +1,7 @@
 Manage_Proxmox_Container
 =========
 
-This Role enables you to create and delete Containers within a Proxmox Cluster.
+This Role enables you to create and delete Containers and VMs within a Proxmox Cluster.
 
 Requirements
 ------------
@@ -66,6 +66,10 @@ An example Playbook Call looks like this. Ofcourse you may want to specify the V
 or this if you want to delete a Container:
 
     - ansible-playbook manage_container.yml --tags "delete" -e "container_id=105" -k -K -u <username>
+
+Also, if you want to create a new VM on your Proxmox Cluster instead of a Container, you can run the Playbook with the TAG "createvm":
+
+    - ansible-playbook manage_container.yml --tags "createvm" -e "container_id=900 container_clone_id=997 container_node=srvoffice1 container_storage=vm-ssd container_cores=2 container_memory=8192 container_name=vmDemo" -k -K -u <username>
 
 Author Information
 ------------------
