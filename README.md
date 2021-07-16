@@ -1,4 +1,4 @@
-Manage_Proxmox_Container
+Manage_Proxmox
 =========
 
 This Role enables you to create and delete Containers and VMs within a Proxmox Cluster.
@@ -57,7 +57,7 @@ Including an example of how to use your role (for instance, with variables passe
         proxmox_api_user: "root@pam"
         proxmox_api_password: "Start123"
       roles:
-         - role: manage_proxmox_container
+         - role: manage_proxmox
 
 An example Playbook Call looks like this. Ofcourse you may want to specify the Variables within your Playbook or within your Inventory:
 
