@@ -1,6 +1,7 @@
 Changelog of manage_proxmox_container:
 
 Version 1.2.1
+  - Remade Role Name and File Structure
   - Updated README for more Examples on creating VMs instead of Containers
 
 Version 1.2.0
